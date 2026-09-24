@@ -445,7 +445,7 @@ body.light .dk-val { color: #4f46e5; }
       <button class="tab" onclick="showTab('productos')">Productos</button>
       <button class="tab" onclick="showTab('productos-nuevos')">Productos nuevos</button>
       <button class="tab" onclick="showTab('nuevos-alumnos')">Nuevos alumnos</button>
-      <button class="tab" onclick="showTab('caracterizacion')">Caracterización de estudiantes</button>
+      <button class="tab" onclick="showTab('caracterizacion')">Perfil sociodemográfico</button>
       <button class="tab" onclick="showTab('agentes')" style="display:none">Agentes</button>
     </div>
 
@@ -689,7 +689,7 @@ body.light .dk-val { color: #4f46e5; }
       <div class="card" style="padding:0;overflow:hidden">
         <div style="padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
           <div>
-            <div style="font-size:15px;font-weight:700;color:var(--text-primary)">Caracterización de estudiantes</div>
+            <div style="font-size:15px;font-weight:700;color:var(--text-primary)">Perfil sociodemográfico</div>
             <div style="font-size:12px;color:var(--text-secondary);margin-top:2px">Distribución geográfica · haz zoom y clic en un punto para ver el detalle</div>
           </div>
           <div style="display:flex;align-items:center;gap:14px;font-size:11px;color:var(--text-secondary)">
@@ -698,8 +698,19 @@ body.light .dk-val { color: #4f46e5; }
             <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:12px;border-radius:50%;background:#dc2626;display:inline-block"></span> Pocos</span>
           </div>
         </div>
+        <!-- Banner de advertencia: datos de prueba -->
+        <div style="display:flex;align-items:center;gap:12px;padding:12px 20px;background:rgba(234,179,8,.12);border-bottom:1px solid rgba(234,179,8,.35)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" style="flex-shrink:0">
+            <path d="M12 2 L22 20 H2 Z" fill="#eab308" stroke="#a16207" stroke-width="0.5" stroke-linejoin="round"/>
+            <rect x="11" y="8" width="2" height="6" rx="1" fill="#1a1d27"/>
+            <circle cx="12" cy="16.5" r="1.2" fill="#1a1d27"/>
+          </svg>
+          <div style="font-size:12.5px;line-height:1.5;color:var(--text-primary)">
+            <b>Datos de prueba.</b> Las cifras mostradas no son reales. Se está trabajando en la construcción de la caracterización sociodemográfica de los estudiantes de la Alianza Francesa.
+          </div>
+        </div>
         <div style="position:relative;display:flex;flex-wrap:wrap">
-          <div id="mapa-carac" style="flex:1;min-width:320px;height:560px;background:#0b0e14"></div>
+          <div id="mapa-carac" style="flex:1;min-width:320px;height:660px;background:#0b0e14"></div>
           <div id="carac-info" style="width:340px;max-width:100%;padding:20px;border-left:1px solid var(--border);display:none">
             <!-- se llena al hacer clic -->
           </div>
