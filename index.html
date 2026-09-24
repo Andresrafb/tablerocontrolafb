@@ -692,10 +692,18 @@ body.light .dk-val { color: #4f46e5; }
             <div style="font-size:15px;font-weight:700;color:var(--text-primary)">Perfil sociodemográfico</div>
             <div style="font-size:12px;color:var(--text-secondary);margin-top:2px">Distribución geográfica · haz zoom y clic en un punto para ver el detalle</div>
           </div>
-          <div style="display:flex;align-items:center;gap:14px;font-size:11px;color:var(--text-secondary)">
-            <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:12px;border-radius:50%;background:#16a34a;display:inline-block"></span> Muchos</span>
-            <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:12px;border-radius:50%;background:#eab308;display:inline-block"></span> Medio</span>
-            <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:12px;border-radius:50%;background:#dc2626;display:inline-block"></span> Pocos</span>
+          <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+            <div style="display:flex;align-items:center;gap:8px">
+              <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--text-secondary)">País</span>
+              <select class="mes-sel" id="pais-carac" onchange="irAPais(this.value)">
+                <option value="todos">Todos</option>
+              </select>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px;font-size:11px;color:var(--text-secondary)">
+              <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:12px;border-radius:50%;background:#16a34a;display:inline-block"></span> Muchos</span>
+              <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:12px;border-radius:50%;background:#eab308;display:inline-block"></span> Medio</span>
+              <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:12px;border-radius:50%;background:#dc2626;display:inline-block"></span> Pocos</span>
+            </div>
           </div>
         </div>
         <!-- Banner de advertencia: datos de prueba -->
@@ -839,18 +847,25 @@ const INSCRITOS_SEDE_JULIO = {
 // Datos de CARACTERIZACIÓN de estudiantes por ubicación (ejemplo; ajustar con datos reales).
 // lat/lng = coordenadas; n = nº estudiantes; sedes = desglose; edades/estrato/cursos = ejemplo.
 const CARACTERIZACION = [
-  { nombre:'Usaquén',    lat:4.7030, lng:-74.0300, n:50, sedes:{Chico:30,Cedritos:10,'A distancia':10,Centro:0}, edades:'18–35 años', estrato:'4–6', cursos:['A1 Intensivo','B1 Sabatino','DELF B2'] },
-  { nombre:'Chapinero',  lat:4.6510, lng:-74.0630, n:30, sedes:{Chico:20,Cedritos:5,'A distancia':5,Centro:0}, edades:'20–40 años', estrato:'4–6', cursos:['A2 Intensivo','B2 Regular'] },
-  { nombre:'Fontibón',   lat:4.6780, lng:-74.1460, n:3,  sedes:{Chico:1,Cedritos:0,'A distancia':2,Centro:0}, edades:'25–45 años', estrato:'2–3', cursos:['A1 Regular'] },
-  { nombre:'Suba',       lat:4.7450, lng:-74.0840, n:10, sedes:{Chico:4,Cedritos:4,'A distancia':2,Centro:0}, edades:'16–30 años', estrato:'3–4', cursos:['A1 Intensivo','A2 Sabatino'] },
-  { nombre:'Teusaquillo',lat:4.6310, lng:-74.0840, n:23, sedes:{Chico:8,Cedritos:3,'A distancia':4,Centro:8}, edades:'18–38 años', estrato:'3–5', cursos:['B1 Intensivo','DELF B1'] },
-  { nombre:'Los Mártires',lat:4.6040,lng:-74.0900, n:2,  sedes:{Chico:0,Cedritos:0,'A distancia':1,Centro:1}, edades:'22–40 años', estrato:'2–3', cursos:['A1 Regular'] },
-  { nombre:'Santa Fe',   lat:4.6080, lng:-74.0760, n:1,  sedes:{Chico:0,Cedritos:0,'A distancia':0,Centro:1}, edades:'30–45 años', estrato:'2–3', cursos:['A1 Regular'] },
-  { nombre:'Usme',       lat:4.5030, lng:-74.1090, n:2,  sedes:{Chico:0,Cedritos:0,'A distancia':2,Centro:0}, edades:'18–28 años', estrato:'1–2', cursos:['A1 Virtual'] },
-  { nombre:'Quebec',     lat:46.8139,lng:-71.2080, n:3,  sedes:{Chico:0,Cedritos:0,'A distancia':3,Centro:0}, edades:'25–40 años', estrato:'N/A', cursos:['B2 Virtual','C1 Virtual'] },
-  { nombre:'París',      lat:48.8566,lng:2.3522,   n:4,  sedes:{Chico:0,Cedritos:0,'A distancia':4,Centro:0}, edades:'20–35 años', estrato:'N/A', cursos:['C1 Virtual','DALF C1'] },
-  { nombre:'Atlanta',    lat:33.7490,lng:-84.3880, n:1,  sedes:{Chico:0,Cedritos:0,'A distancia':1,Centro:0}, edades:'30–40 años', estrato:'N/A', cursos:['A2 Virtual'] }
+  { nombre:'Usaquén',    pais:'Colombia', lat:4.7030, lng:-74.0300, n:50, sedes:{Chico:30,Cedritos:10,'A distancia':10,Centro:0}, edades:'18–35 años', estrato:'4–6', cursos:['A1 Intensivo','B1 Sabatino','DELF B2'] },
+  { nombre:'Chapinero',  pais:'Colombia', lat:4.6510, lng:-74.0630, n:30, sedes:{Chico:20,Cedritos:5,'A distancia':5,Centro:0}, edades:'20–40 años', estrato:'4–6', cursos:['A2 Intensivo','B2 Regular'] },
+  { nombre:'Fontibón',   pais:'Colombia', lat:4.6780, lng:-74.1460, n:3,  sedes:{Chico:1,Cedritos:0,'A distancia':2,Centro:0}, edades:'25–45 años', estrato:'2–3', cursos:['A1 Regular'] },
+  { nombre:'Suba',       pais:'Colombia', lat:4.7450, lng:-74.0840, n:10, sedes:{Chico:4,Cedritos:4,'A distancia':2,Centro:0}, edades:'16–30 años', estrato:'3–4', cursos:['A1 Intensivo','A2 Sabatino'] },
+  { nombre:'Teusaquillo',pais:'Colombia', lat:4.6310, lng:-74.0840, n:23, sedes:{Chico:8,Cedritos:3,'A distancia':4,Centro:8}, edades:'18–38 años', estrato:'3–5', cursos:['B1 Intensivo','DELF B1'] },
+  { nombre:'Los Mártires',pais:'Colombia',lat:4.6040,lng:-74.0900, n:2,  sedes:{Chico:0,Cedritos:0,'A distancia':1,Centro:1}, edades:'22–40 años', estrato:'2–3', cursos:['A1 Regular'] },
+  { nombre:'Santa Fe',   pais:'Colombia', lat:4.6080, lng:-74.0760, n:1,  sedes:{Chico:0,Cedritos:0,'A distancia':0,Centro:1}, edades:'30–45 años', estrato:'2–3', cursos:['A1 Regular'] },
+  { nombre:'Usme',       pais:'Colombia', lat:4.5030, lng:-74.1090, n:2,  sedes:{Chico:0,Cedritos:0,'A distancia':2,Centro:0}, edades:'18–28 años', estrato:'1–2', cursos:['A1 Virtual'] },
+  { nombre:'Quebec',     pais:'Canadá',   lat:46.8139,lng:-71.2080, n:3,  sedes:{Chico:0,Cedritos:0,'A distancia':3,Centro:0}, edades:'25–40 años', estrato:'N/A', cursos:['B2 Virtual','C1 Virtual'] },
+  { nombre:'París',      pais:'Francia',  lat:48.8566,lng:2.3522,   n:4,  sedes:{Chico:0,Cedritos:0,'A distancia':4,Centro:0}, edades:'20–35 años', estrato:'N/A', cursos:['C1 Virtual','DALF C1'] },
+  { nombre:'Atlanta',    pais:'Estados Unidos', lat:33.7490,lng:-84.3880, n:1, sedes:{Chico:0,Cedritos:0,'A distancia':1,Centro:0}, edades:'30–40 años', estrato:'N/A', cursos:['A2 Virtual'] }
 ];
+// Centro y zoom por país (para volar al seleccionarlo)
+const PAISES_VISTA = {
+  'Colombia':       { lat:4.66,   lng:-74.08, zoom:11 },
+  'Canadá':         { lat:46.81,  lng:-71.21, zoom:11 },
+  'Francia':        { lat:48.857, lng:2.352,  zoom:11 },
+  'Estados Unidos': { lat:33.749, lng:-84.388,zoom:11 }
+};
 
 // Tasa de deserción FIJA (%), mes a mes (ene-ago). Promedio simple de las 4 sedes.
 const DESERCION_MESES = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago'];
@@ -2424,6 +2439,15 @@ function colorSemaforo(n){
 function renderMapaCaracterizacion(){
   const cont = document.getElementById('mapa-carac');
   if(!cont || typeof L === 'undefined') return;
+  // Llenar el selector de países (una sola vez), ordenados con Colombia primero
+  const selPais = document.getElementById('pais-carac');
+  if(selPais && selPais.options.length <= 1){
+    const paises = [...new Set(CARACTERIZACION.map(l=>l.pais))];
+    paises.sort((a,b)=> a==='Colombia'?-1 : b==='Colombia'?1 : a.localeCompare(b));
+    let html = '<option value="todos">Todos los países</option>';
+    paises.forEach(p=>{ const n=CARACTERIZACION.filter(l=>l.pais===p).reduce((s,l)=>s+l.n,0); html+=`<option value="${p}">${p} (${n})</option>`; });
+    selPais.innerHTML = html;
+  }
   // Crear el mapa solo una vez
   if(!_mapaCarac){
     _mapaCarac = L.map('mapa-carac', { worldCopyJump:true, zoomControl:true }).setView([4.66, -74.08], 11);
@@ -2447,6 +2471,17 @@ function renderMapaCaracterizacion(){
   }
   setTimeout(()=>_mapaCarac.invalidateSize(), 200);
 }
+// Vuela el mapa al país seleccionado (o vista mundial si "todos")
+function irAPais(pais){
+  if(!_mapaCarac) return;
+  if(pais === 'todos'){
+    _mapaCarac.setView([20, -30], 2, {animate:true});   // vista mundial
+    return;
+  }
+  const v = PAISES_VISTA[pais];
+  if(v) _mapaCarac.setView([v.lat, v.lng], v.zoom, {animate:true});
+}
+
 function mostrarInfoLocalidad(loc){
   const box = document.getElementById('carac-info');
   if(!box) return;
@@ -2483,6 +2518,9 @@ function mostrarInfoLocalidad(loc){
       ${cursosRows}
     </div>`;
   box.style.display = 'block';
+  // Sincronizar el selector de país con la localidad clicada
+  const selPais = document.getElementById('pais-carac');
+  if(selPais && loc.pais) selPais.value = loc.pais;
   // En el mapa, centrar en la localidad
   if(_mapaCarac) _mapaCarac.setView([loc.lat, loc.lng], Math.max(_mapaCarac.getZoom(), 12), {animate:true});
 }
