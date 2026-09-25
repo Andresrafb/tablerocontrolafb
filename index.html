@@ -820,13 +820,13 @@ const VENTAS_FIJAS_2026 = new Proxy({}, {
 // Cifras FIJAS de la pestaña "Nuevos alumnos" (índice 0=Ene ... 6=Jul). null = sin datos.
 // Nuevos alumnos por año
 const NUEVOS_ALUMNOS_FIJOS = {
-  act: [439, 1387, 247, 191, 157, 205, 206],   // 2026
-  ant: [455, 1639, 295, 215, 171, 223, 370]    // 2025
+  act: [439, 1387, 247, 191, 157, 205, 206, 403],   // 2026
+  ant: [455, 1639, 295, 215, 171, 223, 370, 417]    // 2025
 };
 // Promedio de estudiantes por grupo (cursos). Febrero (índice 1) sin datos.
 const PROMEDIO_ALUMNOS_FIJOS = {
-  act: [7.37, null, 7.64, 7.63, 8.3, 8.3, 7.65],   // 2026
-  ant: [7.85, null, 8.19, 7.54, 7.84, 7.84, 8.10]  // 2025
+  act: [7.37, null, 7.64, 7.63, 8.3, 8.3, 7.65, 8.00],   // 2026
+  ant: [7.85, null, 8.19, 7.54, 7.84, 7.84, 8.10, 7.87]  // 2025
 };
 
 // Nuevos inscritos FIJOS por categoría, solo julio (mes 6). Reemplazan el KPI "nuevos inscritos".
@@ -1613,7 +1613,9 @@ function buildAnualStored(comp) {
 function renderDesercion(mesIdx, sedeKey){
   const cont = document.getElementById('comp-desercion');
   if(!cont) return;
-  cont.style.display = 'block';
+  // Sección de tasa de deserción OCULTA por ahora
+  cont.style.display = 'none';
+  return;
   const fuente = (sedeKey && sedeKey!=='todas' && DESERCION[sedeKey]) ? DESERCION[sedeKey] : DESERCION.general;
   const datAct = fuente.act, datAnt = fuente.ant;
 
@@ -2422,14 +2424,14 @@ function buildMesOptions() {
     selProd.innerHTML = `<option value="${ANIO_FILTRO}-07">Julio ${ANIO_FILTRO}</option><option value="${ANIO_FILTRO}-08">Agosto ${ANIO_FILTRO}</option>`;
     selProd.value = (prev && [...selProd.options].some(o=>o.value===prev)) ? prev : `${ANIO_FILTRO}-08`;
   }
-  // Nuevos alumnos: todos los meses ene-jul + todo el año (para la gráfica de líneas)
+  // Nuevos alumnos: todos los meses ene-ago + todo el año (para la gráfica de líneas)
   const selNa = document.getElementById('mes-na');
   if(selNa){
     const prev = selNa.value;
     let html=`<option value="anio-${ANIO_FILTRO}">Todo ${ANIO_FILTRO}</option>`;
-    [0,1,2,3,4,5,6].forEach(m=>{ const k=`${ANIO_FILTRO}-${String(m+1).padStart(2,'0')}`; html+=`<option value="${k}">${MESES[m]} ${ANIO_FILTRO}</option>`; });
+    [0,1,2,3,4,5,6,7].forEach(m=>{ const k=`${ANIO_FILTRO}-${String(m+1).padStart(2,'0')}`; html+=`<option value="${k}">${MESES[m]} ${ANIO_FILTRO}</option>`; });
     selNa.innerHTML=html;
-    selNa.value = (prev && [...selNa.options].some(o=>o.value===prev)) ? prev : `${ANIO_FILTRO}-07`;
+    selNa.value = (prev && [...selNa.options].some(o=>o.value===prev)) ? prev : `${ANIO_FILTRO}-08`;
   }
   // Agentes (oculto): se deja el mes actual si existe
   const selAge = document.getElementById('mes-age');
@@ -2468,13 +2470,13 @@ function renderNuevosAlumnos() {
   let mesIdx = null;
   if(typeof mesSel==='string' && /^\d{4}-\d{2}$/.test(mesSel)) mesIdx = parseInt(mesSel.slice(5)) - 1;
 
-  const MESES_NA = ['Ene','Feb','Mar','Abr','May','Jun','Jul'];   // ene-jul
+  const MESES_NA = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago'];   // ene-ago
   const nAct = NUEVOS_ALUMNOS_FIJOS.act, nAnt = NUEVOS_ALUMNOS_FIJOS.ant;
   const pAct = PROMEDIO_ALUMNOS_FIJOS.act, pAnt = PROMEDIO_ALUMNOS_FIJOS.ant;
 
   // KPIs según el mes seleccionado (o total del año)
   let kNuevosAct, kNuevosAnt, kPromAct, kPromAnt;
-  if(mesIdx !== null && mesIdx <= 6){
+  if(mesIdx !== null && mesIdx <= 7){
     kNuevosAct = nAct[mesIdx];
     kNuevosAnt = nAnt[mesIdx];
     kPromAct = pAct[mesIdx];
@@ -2498,7 +2500,7 @@ function renderNuevosAlumnos() {
   // Gráfica 1: si es TODO el año → líneas mes a mes (ene-jul); si es un mes → barras de ese mes
   if(window._chartNaProducto) window._chartNaProducto.destroy();
   const elGraf = document.getElementById('chartNaProducto');
-  if(mesIdx !== null && mesIdx <= 6){
+  if(mesIdx !== null && mesIdx <= 7){
     // Un solo mes: barras 2026 vs 2025
     window._chartNaProducto = new Chart(elGraf, {
       type:'bar',
@@ -2528,7 +2530,7 @@ function renderNuevosAlumnos() {
 
   // Gráfica 2: promedio de alumnos por grupo (Cursos), 2026 vs 2025 del mes o media anual
   let dPromAct, dPromAnt, labelProm;
-  if(mesIdx !== null && mesIdx <= 6){
+  if(mesIdx !== null && mesIdx <= 7){
     dPromAct = [kPromAct!=null?+kPromAct.toFixed(2):0];
     dPromAnt = [kPromAnt!=null?+kPromAnt.toFixed(2):0];
     labelProm = [MESES_NA[mesIdx]];
