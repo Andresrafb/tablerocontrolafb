@@ -788,7 +788,7 @@ const VENTAS_FIJAS = {
     ant: { 0:{val:410538975,insc:447}, 1:{val:1871328429,insc:1888}, 2:{val:901919051,insc:1139}, 3:{val:778345100,insc:1010}, 4:{val:774605600,insc:986}, 5:{val:744165930,insc:985}, 6:{val:911444740,insc:1166}, 7:{val:1671994275,insc:1726} }
   },
   'Nomade': {
-    act: { 0:{val:18341000,insc:10}, 1:{val:15767000,insc:15}, 2:{val:21556901,insc:19}, 3:{val:38463300,insc:20}, 4:{val:20227700,insc:15}, 5:{val:17611500,insc:16}, 6:{val:32486400,insc:21}, 7:{val:11362900,insc:11} },
+    act: { 0:{val:24241000,insc:13}, 1:{val:14816000,insc:14}, 2:{val:25884900,insc:19}, 3:{val:35254100,insc:21}, 4:{val:20227700,insc:15}, 5:{val:22497900,insc:16}, 6:{val:43312400,insc:27}, 7:{val:14001900,insc:12} },
     ant: { 0:{val:0,insc:0}, 1:{val:0,insc:0}, 2:{val:0,insc:0}, 3:{val:0,insc:0}, 4:{val:0,insc:0}, 5:{val:0,insc:0}, 6:{val:0,insc:0}, 7:{val:0,insc:0} }
   },
   'Clases particulares': {
@@ -842,6 +842,62 @@ const INSCRITOS_SEDE_JULIO = {
   'Campamentos de verano': { 'Chico': 75,  'A distancia': 0,   'Centro': 0,  'Cedritos': 0 },
   'Nomade':                { 'Chico': 21,  'A distancia': 0,   'Centro': 0,  'Cedritos': 0 },
   'Packs':                 { 'Chico': 21,  'A distancia': 0,   'Centro': 0,  'Cedritos': 0 }
+};
+
+// Ventas por SEDE (unidades y valor), por mes (índice), categoría y año (act=2026, ant=2025).
+// Desglose al filtrar por sede. El total de la categoría NO cambia. mesIdx 7 = Agosto.
+const VENTAS_SEDE = {
+  0: { 'Cursos': { act: { 'Chico':{uds:160,val:320042040}, 'Centro':{uds:29,val:88663284}, 'Cedritos':{uds:28,val:304941820}, 'A distancia':{uds:183,val:463653520} } },
+       'Clases particulares': { act: { 'Chico':{uds:1,val:1830000}, 'Centro':{uds:0,val:0}, 'Cedritos':{uds:1,val:1830000}, 'A distancia':{uds:2,val:3759000} } } },
+  1: { 'Cursos': { act: { 'Chico':{uds:371,val:271423133}, 'Centro':{uds:78,val:56989570}, 'Cedritos':{uds:410,val:270754680}, 'A distancia':{uds:711,val:446019289} } },
+       'Clases particulares': { act: { 'Chico':{uds:1,val:3642000}, 'Centro':{uds:3,val:11201000}, 'Cedritos':{uds:2,val:5761000}, 'A distancia':{uds:3,val:9213000} } } },
+  2: { 'Cursos': { act: { 'Chico':{uds:294,val:280317230}, 'Centro':{uds:60,val:62020854}, 'Cedritos':{uds:93,val:116922744}, 'A distancia':{uds:432,val:318880881} } },
+       'Clases particulares': { act: { 'Chico':{uds:0,val:0}, 'Centro':{uds:1,val:1929000}, 'Cedritos':{uds:1,val:3642000}, 'A distancia':{uds:0,val:0} } } },
+  3: { 'Cursos': { act: { 'Chico':{uds:219,val:192262982}, 'Centro':{uds:73,val:58917901}, 'Cedritos':{uds:89,val:103706840}, 'A distancia':{uds:411,val:314255797} } },
+       'Clases particulares': { act: { 'Chico':{uds:4,val:9429000}, 'Centro':{uds:2,val:5761000}, 'Cedritos':{uds:1,val:796934}, 'A distancia':{uds:2,val:7284000} } } },
+  4: { 'Cursos': { act: { 'Chico':{uds:321,val:314708338}, 'Centro':{uds:78,val:87347810}, 'Cedritos':{uds:71,val:78775755}, 'A distancia':{uds:369,val:365608340} } },
+       'Clases particulares': { act: { 'Chico':{uds:2,val:5571000}, 'Centro':{uds:1,val:3642000}, 'Cedritos':{uds:3,val:6701136}, 'A distancia':{uds:7,val:20355000} } } },
+  5: { 'Cursos': { act: { 'Chico':{uds:238,val:333649362}, 'Centro':{uds:85,val:85017400}, 'Cedritos':{uds:42,val:189784881}, 'A distancia':{uds:338,val:378044013} } },
+       'Clases particulares': { act: { 'Chico':{uds:3,val:7500000}, 'Centro':{uds:2,val:3858000}, 'Cedritos':{uds:2,val:5571000}, 'A distancia':{uds:4,val:14568000} } } },
+  6: { 'Cursos': { act: { 'Chico':{uds:342,val:406961720}, 'Centro':{uds:37,val:88220580}, 'Cedritos':{uds:82,val:149878107}, 'A distancia':{uds:340,val:476277723} } },
+       'Clases particulares': { act: { 'Chico':{uds:3,val:5787000}, 'Centro':{uds:0,val:0}, 'Cedritos':{uds:3,val:5787000}, 'A distancia':{uds:13,val:44589900} } } },
+  7: {  // Agosto
+    'Cursos': {
+      act: {  // 2026
+        'Chico':       { uds:395, val:403117403 },
+        'Cedritos':    { uds:310, val:394684252 },
+        'Centro':      { uds:99,  val:101830569 },
+        'A distancia': { uds:571, val:484081923 }
+      },
+      ant: {  // 2025
+        'Chico':       { uds:404, val:322766142 },
+        'Centro':      { uds:107, val:94245267 },
+        'Cedritos':    { uds:407, val:299168700 },
+        'A distancia': { uds:744, val:515024970 }
+      }
+    },
+    'Clases particulares': {
+      act: { 'Chico':{uds:2,val:3858000}, 'Centro':{uds:2,val:7559000}, 'Cedritos':{uds:4,val:11018900}, 'A distancia':{uds:5,val:14784000} }
+    }
+  }
+};
+// Devuelve {uds, val} de una categoría en una sede/mes/año, o null. sufAnio 'act'(2026) o 'ant'(2025).
+function ventaSede(mesIdx, cat, sede, sufAnio){
+  sufAnio = sufAnio || 'act';
+  const m = VENTAS_SEDE[mesIdx];
+  return (m && m[cat] && m[cat][sufAnio] && m[cat][sufAnio][sede]) ? m[cat][sufAnio][sede] : null;
+}
+
+// Desglose de NOMADE por tipo de membresía y mes (2026). c=cantidad, v=valor.
+const NOMADE_TIPOS = {
+  0: { '1 mes':{c:8,v:7425000},  '3 meses':{c:2,v:4906000},  '6 meses':{c:3,v:11910000} },
+  1: { '1 mes':{c:13,v:12363000},'3 meses':{c:1,v:2453000},  '6 meses':{c:0,v:0} },
+  2: { '1 mes':{c:14,v:13218900},'3 meses':{c:4,v:8338000},  '6 meses':{c:1,v:4328000} },
+  3: { '1 mes':{c:14,v:12458100},'3 meses':{c:4,v:9812000},  '6 meses':{c:3,v:12984000} },
+  4: { '1 mes':{c:12,v:10993700},'3 meses':{c:2,v:4906000},  '6 meses':{c:1,v:4328000} },
+  5: { '1 mes':{c:11,v:10232900},'3 meses':{c:5,v:12265000}, '6 meses':{c:0,v:0} },
+  6: { '1 mes':{c:18,v:16836900},'3 meses':{c:6,v:13491500}, '6 meses':{c:3,v:12984000} },
+  7: { '1 mes':{c:9,v:8144900},  '3 meses':{c:3,v:5857000},  '6 meses':{c:0,v:0} }
 };
 
 // Datos de CARACTERIZACIÓN de estudiantes por ubicación (ejemplo; ajustar con datos reales).
@@ -1065,6 +1121,53 @@ function realFromRows(mesIdx, sedeKey) {
         const f25 = ventaFija(cat, mesIdx, 'ant');
         if(f25){ res[s+'_ant'] = f25.insc; res[s+'_antval'] = f25.val; }
       }
+    });
+  } else if(mesIdx !== null){
+    // Con filtro de sede, mes específico: usar el desglose por sede (VENTAS_SEDE) donde exista
+    PRODUCTS_KEY.forEach(cat=>{
+      const s = cat.replace(/[^a-zA-Z0-9]/g,'_');
+      const vs26 = ventaSede(mesIdx, cat, sedeKey, 'act');
+      if(vs26){ res[s+'_act'] = vs26.uds; res[s+'_actval'] = vs26.val; }
+      const vs25 = ventaSede(mesIdx, cat, sedeKey, 'ant');
+      if(vs25){ res[s+'_ant'] = vs25.uds; res[s+'_antval'] = vs25.val; }
+    });
+    // Nomade NO se filtra por sede: mantiene su total fijo del mes
+    const f26 = ventaFija('Nomade', mesIdx, 'act');
+    if(f26){ res['Nomade_act'] = f26.insc; res['Nomade_actval'] = f26.val; }
+    // Campamentos de verano y Packs tampoco se filtran por sede: mantienen su total del mes
+    ['Campamentos de verano','Packs'].forEach(cat=>{
+      const s = cat.replace(/[^a-zA-Z0-9]/g,'_');
+      const f = ventaFija(cat, mesIdx, 'act');
+      if(f){ res[s+'_act'] = f.insc; res[s+'_actval'] = f.val; }
+    });
+  } else {
+    // Vista ANUAL con filtro de sede: sumar todos los meses de esa sede (VENTAS_SEDE)
+    PRODUCTS_KEY.forEach(cat=>{
+      const s = cat.replace(/[^a-zA-Z0-9]/g,'_');
+      let u26=0,v26=0,u25=0,v25=0, hay26=false, hay25=false;
+      Object.keys(VENTAS_SEDE).forEach(mi=>{
+        const a = ventaSede(+mi, cat, sedeKey, 'act');
+        if(a){ u26+=a.uds; v26+=a.val; hay26=true; }
+        const b = ventaSede(+mi, cat, sedeKey, 'ant');
+        if(b){ u25+=b.uds; v25+=b.val; hay25=true; }
+      });
+      if(hay26){ res[s+'_act']=u26; res[s+'_actval']=v26; }
+      if(hay25){ res[s+'_ant']=u25; res[s+'_antval']=v25; }
+    });
+    // Nomade NO se filtra por sede: mantiene su total anual (suma de meses fijos)
+    let nu=0,nv=0;
+    if(VENTAS_FIJAS['Nomade'] && VENTAS_FIJAS['Nomade'].act){
+      Object.values(VENTAS_FIJAS['Nomade'].act).forEach(x=>{ nu+=x.insc; nv+=x.val; });
+    }
+    res['Nomade_act']=nu; res['Nomade_actval']=nv;
+    // Campamentos y Packs tampoco se filtran por sede: total anual (suma de meses fijos)
+    ['Campamentos de verano','Packs'].forEach(cat=>{
+      const s = cat.replace(/[^a-zA-Z0-9]/g,'_');
+      let cu=0,cv=0;
+      if(VENTAS_FIJAS[cat] && VENTAS_FIJAS[cat].act){
+        Object.values(VENTAS_FIJAS[cat].act).forEach(x=>{ cu+=x.insc; cv+=x.val; });
+      }
+      res[s+'_act']=cu; res[s+'_actval']=cv;
     });
   }
   return res;
@@ -1873,6 +1976,28 @@ function desplegarSubitemsComp(idx, prod){
   const mesIdx = isAnual ? null : parseInt(raw);
   const sedeKey = sedeSel('sede-comp');
 
+  // Caso especial NOMADE: desglosar por tipo de membresía (1/3/6 meses)
+  if(prod === 'Nomade' && sedeKey === 'todas'){
+    // Sumar por tipo (un mes específico o todo el año)
+    const acum = { '1 mes':{c:0,v:0}, '3 meses':{c:0,v:0}, '6 meses':{c:0,v:0} };
+    const meses = (mesIdx !== null) ? [mesIdx] : Object.keys(NOMADE_TIPOS).map(Number);
+    meses.forEach(mi=>{
+      const d = NOMADE_TIPOS[mi];
+      if(!d) return;
+      ['1 mes','3 meses','6 meses'].forEach(t=>{ acum[t].c += d[t].c; acum[t].v += d[t].v; });
+    });
+    const filas = ['1 mes','3 meses','6 meses']
+      .filter(t=>acum[t].c>0)
+      .map(t=>`<div style="display:flex;justify-content:space-between;gap:8px;padding:6px 14px 6px 34px;font-size:12px;border-bottom:1px solid var(--border)">
+        <span style="color:var(--text-secondary)">Nomade (${t}) · ${acum[t].c}</span>
+        <span style="color:var(--success);font-weight:600;white-space:nowrap">${fmtCOP(acum[t].v)}</span>
+      </div>`).join('');
+    cont.innerHTML = filas || '<div style="padding:6px 14px 6px 34px;font-size:12px;color:var(--text-muted)">Sin datos</div>';
+    cont.style.display='block';
+    if(caret) caret.textContent='▾';
+    return;
+  }
+
   // Valor GENERAL del producto en 2026 (usa valores fijos si existen; si no, del archivo).
   let valGeneral = 0, cantGeneral = 0;
   if(sedeKey === 'todas'){
@@ -2601,35 +2726,41 @@ function renderProductos() {
     totalNuevos = data.reduce((s,r)=>s+getNuevosInscritos(r),0);
   }
   document.getElementById('kp-nuevos').textContent=totalNuevos.toLocaleString('es-CO');
-  // Inscritos de CURSOS por sede en julio: valores fijos al filtrar por una sede
-  // Inscritos por sede en julio: suma de los valores fijos por sede de las categorías visibles
-  if(mi===6 && sedeKey!=='todas'){
-    let insSede = 0;
-    Object.keys(INSCRITOS_SEDE_JULIO).forEach(cat=>{
-      if(enVista(cat) && INSCRITOS_SEDE_JULIO[cat][sedeKey]!=null) insSede += INSCRITOS_SEDE_JULIO[cat][sedeKey];
+  // Ventas por sede (VENTAS_SEDE): unidades e ingresos de las categorías visibles, cualquier mes
+  const haySedeMes = (mi!==null && VENTAS_SEDE[mi] && sedeKey!=='todas');
+  if(haySedeMes){
+    let udsSede=0, valSede=0;
+    PRODUCTS_KEY.forEach(cat=>{
+      if(!enVista(cat)) return;
+      const vs = ventaSede(mi, cat, sedeKey);
+      if(vs){ udsSede += vs.uds; valSede += vs.val; }
     });
-    document.getElementById('kp-inscritos').textContent = insSede.toLocaleString('es-CO');
-    document.getElementById('kp-total').textContent = insSede.toLocaleString('es-CO');
+    document.getElementById('kp-total').textContent = udsSede.toLocaleString('es-CO');
+    document.getElementById('kp-inscritos').textContent = udsSede.toLocaleString('es-CO');
+    document.getElementById('kp-ingresos').textContent = fmtCOP(valSede);
   }
   document.getElementById('pill-prod').textContent=(mesKey==='todos'?`${data.length} registros · todos los meses`:`${data.length} · ${getMesLabel(mesKey)}`)+(sedeKey!=='todas'?` · ${sedeKey}`:'');
   const list=document.getElementById('prod-list');
-  // Al filtrar por sede en julio: construir la lista desde los inscritos fijos por sede
+  // Al filtrar por sede: construir la lista desde VENTAS_SEDE (unidades + valor)
   let prodsMostrar = prods;
-  if(mi===6 && sedeKey!=='todas'){
+  if(haySedeMes){
     prodsMostrar = [];
     PRODUCTS_KEY.forEach(cat=>{
       if(!enVista(cat)) return;
-      const insc = (INSCRITOS_SEDE_JULIO[cat] && INSCRITOS_SEDE_JULIO[cat][sedeKey]!=null) ? INSCRITOS_SEDE_JULIO[cat][sedeKey] : 0;
-      if(insc>0) prodsMostrar.push([cat, {count:insc, valor:0}]);
+      const vs = ventaSede(mi, cat, sedeKey);
+      if(vs && (vs.uds>0 || vs.val>0)) prodsMostrar.push([cat, {count:vs.uds, valor:vs.val}]);
     });
-    prodsMostrar.sort((a,b)=>b[1].count-a[1].count);
+    prodsMostrar.sort((a,b)=>b[1].valor-a[1].valor);
   }
   if(!prodsMostrar.length){list.innerHTML='<div class="empty"><p>Sin datos para este período</p></div>';}
-  else{list.innerHTML=prodsMostrar.map(([n,d])=>{
-    // Nombre a mostrar: "Cursos generales" para Cursos; el resto igual
-    const nombreMostrar = (n==='Cursos') ? 'Cursos generales' : n;
-    return `<div class="list-item" onclick="selectProducto('${n.replace(/'/g,"\\'")}','${mesKey}')"><span class="list-item-name" title="${n}">${nombreMostrar}</span><span class="list-item-meta"><span class="list-item-count">${d.count} inscrito${d.count!==1?'s':''}</span><span class="list-item-val">${d.valor>0?fmtCOP(d.valor):''}</span></span></div>`;
-  }).join('');}
+  else{
+    const esSede = haySedeMes;
+    list.innerHTML=prodsMostrar.map(([n,d])=>{
+      const nombreMostrar = (n==='Cursos') ? 'Cursos generales' : n;
+      const unidad = esSede ? `${d.count} und` : `${d.count} inscrito${d.count!==1?'s':''}`;
+      return `<div class="list-item" onclick="selectProducto('${n.replace(/'/g,"\\'")}','${mesKey}')"><span class="list-item-name" title="${n}">${nombreMostrar}</span><span class="list-item-meta"><span class="list-item-count">${unidad}</span><span class="list-item-val">${d.valor>0?fmtCOP(d.valor):''}</span></span></div>`;
+    }).join('');
+  }
   // Diagnóstico: si todo cae en "Otros", mostrar los encabezados reales
   if(data.length && prods.length && prods.every(([n])=>n==='Otros')){
     const headers=Object.keys(data[0]||{});
